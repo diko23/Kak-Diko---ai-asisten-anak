@@ -1,0 +1,18 @@
+{
+  "name": "kak-diko-world-pwa",
+  "version": "4.0.0",
+  "description": "Kak Diko World SD Kelas 1-6 — Interactive AI Character Stage, Duolingo English Quest & Dedicated Parent Mobile App (/parent).",
+  "type": "module",
+  "main": "dev-server.mjs",
+  "scripts": {
+    "start": "node dev-server.mjs",
+    "dev": "node dev-server.mjs",
+    "test": "node --test tests/verify.test.mjs"
+  },
+  "dependencies": {
+    "@google/genai": "^2.30.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

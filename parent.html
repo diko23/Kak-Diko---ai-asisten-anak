@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0F172A" />
+  <meta name="description" content="Diko Parent Monitor — Aplikasi HP Khusus Orang Tua untuk Memantau Laporan Perkembangan Anak, Koleksi Badge, Jam Tidur, & Kontrol AI Kak Diko." />
+  <title>Diko Parent Monitor (Aplikasi HP Orang Tua) — Kontrol &amp; Laporan Anak</title>
+  <link rel="manifest" href="/manifest-parent.json" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body class="parent-app-body">
+
+  <!-- Bar Navigasi Demo Lintas Perangkat (Untuk Memudahkan Preview HP Ortu <-> Web Anak) -->
+  <div class="demo-bridge-bar">
+    <div class="demo-bridge-inner">
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <span class="demo-live-dot"></span>
+        <strong>📱 Mode Aplikasi HP Orang Tua (Diko Parent Monitor)</strong>
+        <span class="demo-code-pill">Kode Sync: <strong id="topSyncCodeLabel">DIKO-2026</strong></span>
+      </div>
+      <div style="display: flex; gap: 0.5rem; align-items: center;">
+        <button id="refreshParentDataBtn" type="button" class="demo-bridge-btn">
+          🔄 Refresh Data Anak
+        </button>
+        <a href="/" class="demo-bridge-btn primary">
+          💻 Buka Layar Web Anak (Chromebook) ➔
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wadah Smartphone App Shell -->
+  <div class="phone-shell-wrapper">
+    <div class="phone-app-container">
+
+      <!-- Status Bar & Header Aplikasi HP Orang Tua -->
+      <header class="phone-app-header">
+        <div class="phone-header-top">
+          <div style="display: flex; align-items: center; gap: 0.65rem;">
+            <div id="parentChildCharBadge" class="phone-avatar-circle">🦖</div>
+            <div>
+              <div style="display: flex; align-items: center; gap: 0.4rem;">
+                <h1 id="parentChildNameTitle" style="margin: 0; font-size: 1.08rem; font-weight: 800; color: #FFFFFF;">
+                  Budi (Kelas 4 SD)
+                </h1>
+                <span id="parentOnlinePill" class="phone-online-badge">● Aktif</span>
+              </div>
+              <p id="parentChildCompanionSub" style="margin: 0.1rem 0 0; font-size: 0.75rem; color: #94A3B8;">
+                Mentor: Kak Diko Dino • Minat: Robot &amp; Sains
+              </p>
+            </div>
+          </div>
+
+          <!-- Input Kode Pairing Cepat -->
+          <div class="phone-sync-box">
+            <input
+              id="parentSyncCodeInput"
+              type="text"
+              value="DIKO-2026"
+              aria-label="Kode Sinkronisasi Keluarga"
+              class="phone-sync-input"
+            />
+            <button id="parentConnectCodeBtn" type="button" class="phone-sync-btn">
+              Hubungkan
+            </button>
+          </div>
+        </div>
+
+        <!-- Navigasi 3 Tab Utama Aplikasi HP Orang Tua -->
+        <nav class="phone-tab-bar" aria-label="Menu Utama Aplikasi HP Orang Tua">
+          <button id="pTabReportBtn" type="button" class="phone-tab-btn active">
+            📊 Laporan Anak
+          </button>
+          <button id="pTabControlBtn" type="button" class="phone-tab-btn">
+            🎛️ Kontrol &amp; AI
+          </button>
+          <button id="pTabBadgesBtn" type="button" class="phone-tab-btn">
+            🏅 Badge &amp; Cloud
+          </button>
+        </nav>
+      </header>
+
+      <!-- Notifikasi Status Sinkronisasi di HP -->
+      <div id="parentToastBanner" class="phone-toast-banner">
+        ✅ Terhubung real-time dengan perangkat belajar anak (Kode: DIKO-2026).
+      </div>
+
+      <!-- ================================================================ -->
+      <!-- TAB HP 1: LAPORAN PERKEMBANGAN ANAK (REAL-TIME PROGRESS REPORT)  -->
+      <!-- ================================================================ -->
+      <main id="pViewReport" class="phone-view-content">
+
+        <!-- 4 Kartu Metrik Utama -->
+        <div class="phone-metrics-grid">
+          <div class="phone-metric-card amber">
+            <span class="m-label">⭐ Total Bintang</span>
+            <strong id="repStarsText" class="m-value">14</strong>
+          </div>
+          <div class="phone-metric-card blue">
+            <span class="m-label">⚡ Poin XP</span>
+            <strong id="repXpText" class="m-value">185 XP</strong>
+          </div>
+          <div class="phone-metric-card emerald">
+            <span class="m-label">⏱️ Durasi Belajar</span>
+            <strong id="repDurationText" class="m-value">12m 20d</strong>
+          </div>
+          <div class="phone-metric-card rose">
+            <span class="m-label">🔥 English Streak</span>
+            <strong id="repStreakText" class="m-value">3 Hari</strong>
+          </div>
+        </div>
+
+        <!-- Grafik Penguasaan 5 Bidang Kurikulum Merdeka SD -->
+        <section class="phone-card">
+          <div class="phone-card-header">
+            <h2 class="phone-card-title">📈 Grafik Penguasaan Kurikulum Anak</h2>
+            <span id="repGradePhasePill" class="badge-grade">Kelas 4 • Fase B</span>
+          </div>
+
+          <div id="skillBarsContainer" class="skill-bars-list">
+            <div class="skill-row">
+              <div class="skill-label-row">
+                <span>📖 Literasi &amp; Bahasa Indonesia</span>
+                <strong id="scoreMembacaText">85%</strong>
+              </div>
+              <div class="skill-bar-track">
+                <div id="barMembacaFill" class="skill-bar-fill amber" style="width: 85%;"></div>
+              </div>
+            </div>
+
+            <div class="skill-row">
+              <div class="skill-label-row">
+                <span>🔢 Matematika &amp; Logika Berhitung</span>
+                <strong id="scoreBerhitungText">92%</strong>
+              </div>
+              <div class="skill-bar-track">
+                <div id="barBerhitungFill" class="skill-bar-fill emerald" style="width: 92%;"></div>
+              </div>
+            </div>
+
+            <div class="skill-row">
+              <div class="skill-label-row">
+                <span>🔬 Sains &amp; Eksperimen IPAS</span>
+                <strong id="scoreSainsText">90%</strong>
+              </div>
+              <div class="skill-bar-track">
+                <div id="barSainsFill" class="skill-bar-fill blue" style="width: 90%;"></div>
+              </div>
+            </div>
+
+            <div class="skill-row">
+              <div class="skill-label-row">
+                <span>💛 Karakter &amp; Budi Pekerti</span>
+                <strong id="scoreKarakterText">88%</strong>
+              </div>
+              <div class="skill-bar-track">
+                <div id="barKarakterFill" class="skill-bar-fill purple" style="width: 88%;"></div>
+              </div>
+            </div>
+
+            <div class="skill-row">
+              <div class="skill-label-row">
+                <span>🇬🇧 Duolingo English Quest</span>
+                <strong id="scoreEnglishText">84%</strong>
+              </div>
+              <div class="skill-bar-track">
+                <div id="barEnglishFill" class="skill-bar-fill green" style="width: 84%;"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Kirim Bintang & Pesan Semangat dari HP Orang Tua ke Layar Anak -->
+        <section class="phone-card highlight-card">
+          <h2 class="phone-card-title">💌 Kirim Apresiasi &amp; Bintang ke Layar Anak</h2>
+          <p class="phone-card-sub">
+            Beri hadiah +5 ⭐ Bintang dan pesan semangat yang langsung tampil di layar belajar anak.
+          </p>
+          <div style="display: flex; gap: 0.45rem; margin-top: 0.45rem;">
+            <input
+              id="parentCheerInput"
+              type="text"
+              class="setting-input"
+              value="Hebat sekali belajarnya hari ini Nak! Ini hadiah +5 Bintang dari Ayah & Ibu ❤️"
+            />
+            <button id="sendCheerBtn" type="button" class="util-btn emerald" style="white-space: nowrap;">
+              🎁 Kirim +5 ⭐
+            </button>
+          </div>
+        </section>
+
+        <!-- Riwayat Aktivitas & Log Percakapan Anak dengan Kak Diko -->
+        <section class="phone-card">
+          <div class="phone-card-header">
+            <h2 class="phone-card-title">🕒 Log Aktivitas &amp; Percakapan Anak</h2>
+            <span style="font-size: 0.72rem; font-weight: 700; color: #64748B;">Live Sync</span>
+          </div>
+
+          <div id="parentActivityFeed" class="phone-activity-feed"></div>
+
+          <h3 style="margin: 0.85rem 0 0.4rem; font-size: 0.82rem; font-weight: 800; color: #334155;">
+            💬 Cuplikan Dialog Terakhir dengan Kak Diko:
+          </h3>
+          <div id="parentRecentChatsBox" class="phone-chat-preview"></div>
+        </section>
+
+      </main>
+
+      <!-- ================================================================ -->
+      <!-- TAB HP 2: KONTROL JARAK JAUH, JAM TIDUR & DIDIKAN CUSTOM AI      -->
+      <!-- ================================================================ -->
+      <main id="pViewControl" class="phone-view-content hidden">
+
+        <!-- Kartu Kunci Layar Instan Jarak Jauh -->
+        <section class="phone-card">
+          <div class="phone-card-header">
+            <div>
+              <h2 class="phone-card-title">🔒 Kunci Layar Jarak Jauh (Remote Lock)</h2>
+              <p class="phone-card-sub">
+                Kunci atau buka layar belajar anak di Chromebook secara langsung dari HP Anda.
+              </p>
+            </div>
+            <span id="remoteLockStatusBadge" class="badge-grade">Layar Terbuka</span>
+          </div>
+
+          <div style="display: flex; gap: 0.55rem; margin-top: 0.6rem;">
+            <button id="remoteLockNowBtn" type="button" class="util-btn danger" style="flex: 1; padding: 0.65rem;">
+              🔒 Kunci Layar Anak Sekarang
+            </button>
+            <button id="remoteUnlockNowBtn" type="button" class="util-btn emerald" style="flex: 1; padding: 0.65rem;">
+              🔓 Buka Kunci Layar Anak
+            </button>
+          </div>
+        </section>
+
+        <!-- Kartu Didikan Custom AI Kak Diko -->
+        <section class="phone-card">
+          <h2 class="phone-card-title">🧠 Fokus Didikan Custom AI "Kak Diko"</h2>
+          <p class="phone-card-sub">
+            Tuliskan nilai karakter, adab, atau cara mengajar yang wajib ditekankan oleh otak AI Kak Diko kepada anak Anda.
+          </p>
+
+          <textarea
+            id="pDirectiveInput"
+            rows="3"
+            class="setting-textarea"
+            placeholder="Contoh: Gunakan perumpamaan dinosaurus dan robot, tuntun PR bertahap tanpa memberi jawaban langsung, dan ingatkan anak berdoa."
+          ></textarea>
+
+          <div class="sim-chips" style="margin-top: 0.4rem; margin-bottom: 0;">
+            <button type="button" data-p-directive="Tuntun anak berpikir bertahap untuk PR tanpa memberi jawaban instan dan puji usahanya" class="sim-chip">
+              + Tuntun PR Tanpa Jawaban Instan
+            </button>
+            <button type="button" data-p-directive="Tekankan sopan santun kepada orang tua, empat kata ajaib, dan berdoa sebelum belajar" class="sim-chip">
+              + Sopan Santun &amp; Doa
+            </button>
+            <button type="button" data-p-directive="Perbanyak latihan kosakata Bahasa Inggris dan logika berhitung dengan contoh hobi anak" class="sim-chip">
+              + Fokus English &amp; Logika
+            </button>
+          </div>
+        </section>
+
+        <!-- Kartu Pengaturan Jam Tidur & Adaptasi Kegiatan Harian -->
+        <section class="phone-card">
+          <h2 class="phone-card-title">🌙 Jam Tidur Malam &amp; Jadwal Kegiatan Anak</h2>
+          <div class="meta-grid" style="margin-top: 0.45rem;">
+            <div class="setting-row" style="margin-bottom: 0;">
+              <label for="pBedtimeStart">Mulai Jam Tidur Malam:</label>
+              <input id="pBedtimeStart" type="time" value="21:00" class="setting-input" />
+            </div>
+            <div class="setting-row" style="margin-bottom: 0;">
+              <label for="pBedtimeEnd">Jam Bangun Pagi:</label>
+              <input id="pBedtimeEnd" type="time" value="05:30" class="setting-input" />
+            </div>
+          </div>
+
+          <div class="setting-row" style="margin-top: 0.65rem;">
+            <label for="pScheduleSelect">Adaptasi Kegiatan Harian Anak Saat Ini:</label>
+            <select id="pScheduleSelect" class="setting-select">
+              <option value="">Sedang Waktu Belajar Aktif (Normal)</option>
+              <option value="mandi sore dan istirahat sejenak">Waktunya Mandi Sore &amp; Istirahat</option>
+              <option value="makan bersama keluarga dan minum air putih">Waktunya Makan &amp; Minum Air Putih</option>
+              <option value="mengaji, berdoa, dan merapikan buku sekolah">Waktunya Mengaji / Ibadah &amp; Merapikan Buku</option>
+              <option value="bersiap tidur malam agar besok pagi segar ke sekolah">Mendekati Jam Tidur Malam</option>
+            </select>
+          </div>
+
+          <div class="setting-row">
+            <label for="pDailyLimitSelect">Batas Durasi Layar Harian (Screen Time Guard):</label>
+            <select id="pDailyLimitSelect" class="setting-select">
+              <option value="0">Tanpa Batas Durasi</option>
+              <option value="15">15 Menit</option>
+              <option value="20">20 Menit (Rekomendasi SD Kelas 1-2)</option>
+              <option value="30" selected>30 Menit (Rekomendasi SD Kelas 3-6)</option>
+              <option value="45">45 Menit</option>
+            </select>
+          </div>
+
+          <button id="saveParentControlsBtn" type="button" class="action-primary-btn" style="margin-top: 0.5rem; background: #10B981;">
+            📲 Simpan &amp; Terapkan ke Perangkat Anak Sekarang
+          </button>
+        </section>
+
+      </main>
+
+      <!-- ================================================================ -->
+      <!-- TAB HP 3: PANTAUAN KOLEKSI BADGE, PROFIL ANAK & CLOUD/DRIVE      -->
+      <!-- ================================================================ -->
+      <main id="pViewBadges" class="phone-view-content hidden">
+
+        <section class="phone-card">
+          <div class="phone-card-header">
+            <h2 class="phone-card-title">🏅 Pencapaian Koleksi Badge Anak</h2>
+            <span id="parentBadgeCountPill" class="badge-grade">7 / 8 Terbuka</span>
+          </div>
+          <p class="phone-card-sub">
+            Daftar lencana prestasi yang berhasil diraih anak selama belajar bersama Kak Diko.
+          </p>
+          <div id="parentBadgesGrid" class="parent-badges-grid"></div>
+        </section>
+
+        <!-- Pengaturan Profil, Kelas, & Karakter Anak dari HP Orang Tua -->
+        <section class="phone-card">
+          <h2 class="phone-card-title">👦 Sesuaikan Kelas &amp; Karakter Anak dari HP</h2>
+          <div class="meta-grid" style="margin-top: 0.45rem;">
+            <div class="setting-row" style="margin-bottom: 0;">
+              <label for="pChildGradeSelect">Jenjang Kelas Anak:</label>
+              <select id="pChildGradeSelect" class="setting-select">
+                <option value="1">Kelas 1 SD (Fase A)</option>
+                <option value="2">Kelas 2 SD (Fase A)</option>
+                <option value="3">Kelas 3 SD (Fase B)</option>
+                <option value="4" selected>Kelas 4 SD (Fase B)</option>
+                <option value="5">Kelas 5 SD (Fase C)</option>
+                <option value="6">Kelas 6 SD (Fase C)</option>
+              </select>
+            </div>
+            <div class="setting-row" style="margin-bottom: 0;">
+              <label for="pChildCharSelect">Karakter Kak Diko:</label>
+              <select id="pChildCharSelect" class="setting-select">
+                <option value="owl">🦉 Burung Hantu Pintar</option>
+                <option value="dino" selected>🦖 Dino Ceria</option>
+                <option value="robot">🤖 Robo Pintar</option>
+                <option value="cat">🐱 Kucing Imut</option>
+                <option value="astro">🚀 Kapten Astronot</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="setting-row" style="margin-top: 0.55rem;">
+            <label for="pDriveWebhookInput">☁️ URL Google Drive / Sheets Apps Script (Opsional):</label>
+            <input
+              id="pDriveWebhookInput"
+              type="url"
+              class="setting-input"
+              placeholder="https://script.google.com/macros/s/.../exec"
+            />
+          </div>
+
+          <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+            <button id="pUpdateProfileBtn" type="button" class="util-btn emerald" style="flex: 1;">
+              💾 Update Profil Anak
+            </button>
+            <button id="pExportReportBtn" type="button" class="util-btn amber" style="flex: 1;">
+              📥 Unduh Laporan JSON
+            </button>
+          </div>
+        </section>
+
+      </main>
+
+    </div>
+  </div>
+
+  <script src="/parent.js"></script>
+</body>
+</html>

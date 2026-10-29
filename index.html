@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FF9600" />
+  <meta name="description" content="Kak Diko World SD (Kelas 1 s/d 6) — Karakter Asisten AI Interaktif, Peta Pulau Level Kurikulum Merdeka, Duolingo English Quest, & Koleksi Badge." />
+  <title>Kak Diko World (SD Kelas 1–6) — Asisten Karakter AI Interaktif &amp; Game Edukasi</title>
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png" />
+  <link rel="apple-touch-icon" href="/assets/icon-192.png" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body class="kid-game-world" data-scene="dino">
+
+  <!-- Lapisan Partikel Perayaan Bintang / Confetti Ringan -->
+  <div id="celebrationBurstLayer" class="celebration-layer" aria-hidden="true"></div>
+
+  <!-- ==================================================================== -->
+  <!-- TOP GAME HUD BAR (VIBECODE PROFESIONAL - DUOLINGO / KHAN KIDS STYLE) -->
+  <!-- ==================================================================== -->
+  <header class="app-header game-hud-header">
+    <div class="header-inner">
+      <div class="brand-group" id="brandCharacterTrigger" style="cursor: pointer;" title="Ketuk untuk Ganti Karakter Kak Diko">
+        <div id="headerCharacterAvatar" class="brand-character-avatar">
+          🦖
+        </div>
+        <div>
+          <div class="brand-title-row">
+            <h1 id="headerMentorTitle" class="brand-title">Kak Diko World</h1>
+            <span id="headerGradeBadge" class="badge-grade">Kelas 4 SD • Fase B</span>
+          </div>
+          <p id="headerCharacterSubtitle" class="brand-subtitle">
+            🦖 Asisten AI Interaktif • Sinkron HP Ortu Aktif
+          </p>
+        </div>
+      </div>
+
+      <!-- 4 Tab Mode Petualangan Anak (3D Chunky Game Tabs) -->
+      <nav class="mode-nav game-mode-nav" aria-label="Mode Petualangan Anak">
+        <button id="tabTutorBtn" type="button" class="mode-tab-btn active">
+          🤖 Asisten AI
+        </button>
+        <button id="tabLevelsBtn" type="button" class="mode-tab-btn">
+          🗺️ Pulau Level
+        </button>
+        <button id="tabEnglishBtn" type="button" class="mode-tab-btn duo-tab">
+          🇬🇧 English Quest
+        </button>
+        <button id="tabBadgesBtn" type="button" class="mode-tab-btn badge-tab">
+          🏅 Koleksi Badge (<span id="navBadgeCountText">7/8</span>)
+        </button>
+      </nav>
+
+      <!-- Game HUD Counters & Tombol Cepat -->
+      <div class="header-controls">
+        <div class="star-pill hud-pill-3d" title="Bintang Prestasi">
+          <span>⭐</span>
+          <span id="starCountText">14</span>
+        </div>
+        <div class="xp-pill hud-pill-3d" title="Poin Pengalaman (XP)">
+          <span>⚡</span>
+          <span id="xpCountText">185</span>
+          <span>XP</span>
+        </div>
+        <div id="studyTimerBadge" class="timer-pill hud-pill-3d" title="Durasi Belajar Hari Ini">
+          <span>⏱️</span>
+          <span id="studyTimerText">00:00</span>
+        </div>
+        <button
+          id="openProfileModalBtn"
+          type="button"
+          class="icon-btn profile-btn btn-3d-amber"
+          title="Pilih Karakter Asisten AI, Kelas (1-6) &amp; Hobi"
+        >
+          🎭 Pilih Karakter
+        </button>
+        <button
+          id="basicSettingsToggleBtn"
+          type="button"
+          class="icon-btn btn-3d-white"
+          title="Pengaturan Simpel Anak"
+        >
+          🎛️ Setting
+        </button>
+        <a
+          id="openParentAppLink"
+          href="/parent"
+          class="icon-btn parent-app-pill btn-3d-dark"
+          title="Buka Aplikasi Khusus Kontrol &amp; Laporan Orang Tua (Tampilan HP)"
+        >
+          📱 App HP Ortu
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================================================================== -->
+  <!-- KONTEN UTAMA DUNIA BELAJAR KAK DIKO                                  -->
+  <!-- ==================================================================== -->
+  <main class="app-main">
+
+    <!-- Banner Pesan Semangat Live dari Aplikasi HP Orang Tua -->
+    <div id="parentCheerBanner" class="parent-cheer-banner hidden" role="status">
+      <div style="display: flex; align-items: center; gap: 0.6rem;">
+        <span style="font-size: 1.4rem;">💌</span>
+        <span id="parentCheerText">Pesan dari Ayah &amp; Ibu: Semangat terus belajarnya hari ini!</span>
+      </div>
+      <button id="dismissCheerBtn" type="button" class="cheer-close-btn" aria-label="Tutup Pesan">✕</button>
+    </div>
+
+    <!-- ================================================================== -->
+    <!-- TAMPILAN 1: PANGGUNG KARAKTER INTERAKTIF AI & DIALOG SUARA         -->
+    <!-- ================================================================== -->
+    <section id="viewTutor" class="tutor-layout" aria-label="Panggung Interaktif Kak Diko AI">
+
+      <div class="tutor-stage-grid">
+
+        <!-- KOLOM KIRI: PANGGUNG HIDUP KARAKTER AI INTERAKTIF ("LIVE PUPPET STAGE") -->
+        <div id="interactiveCharacterStage" class="character-live-stage" data-mood="happy">
+          <!-- Ornamen Langit Panggung -->
+          <div class="stage-sky-decor" aria-hidden="true">
+            <span class="floating-cloud c1">☁️</span>
+            <span class="floating-star s1">✨</span>
+            <span class="floating-star s2">⭐</span>
+            <span class="floating-cloud c2">☁️</span>
+          </div>
+
+          <!-- Header Status Persahabatan & Mood Karakter -->
+          <div class="stage-top-hud">
+            <div class="friendship-pill" title="Tingkat Keakraban dengan Kak Diko">
+              <span>❤️ Sahabat Lv.<span id="friendshipLevelNum">3</span></span>
+              <div class="friendship-bar-track">
+                <div id="friendshipBarFill" class="friendship-bar-fill" style="width: 80%;"></div>
+              </div>
+            </div>
+            <span id="characterMoodBadge" class="mood-pill">
+              🤩 Mood: Siap Bermain!
+            </span>
+          </div>
+
+          <!-- Area Karakter SVG Beranimasi Penuh (Klik untuk Mengajak Interaksi!) -->
+          <div
+            id="mascotInteractiveHitbox"
+            class="mascot-puppet-stage"
+            role="button"
+            tabindex="0"
+            aria-label="Ketuk Kak Diko untuk berinteraksi dan tos!"
+            title="Ketuk tubuh Kak Diko untuk menyapa atau tos!"
+          >
+            <!-- Balon Reaksi Cepat Karakter -->
+            <div id="characterFloatingEmote" class="char-floating-emote">
+              👋 Hai Sahabat!
+            </div>
+
+            <!-- Wadah SVG Rig Karakter Hidup (220x220) -->
+            <div id="mascotCustomSvgBox" class="mascot-rig-svg-wrapper"></div>
+            <img
+              id="mascotDefaultImg"
+              src="/assets/kak-bimo-256.jpg"
+              alt="Avatar Kak Diko"
+              class="mascot-avatar hidden"
+              width="140"
+              height="140"
+            />
+
+            <!-- Equalizer Gelombang Suara Interaktif -->
+            <div id="voiceEqualizerBars" class="voice-eq-bars" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+
+          <!-- Nama Karakter & Julukan -->
+          <div class="stage-char-nametag-wrap">
+            <span id="mascotCharacterNameTag" class="char-name-tag">
+              🦖 Kak Diko Dino Ceria
+            </span>
+            <span id="speakingWaveBadge" class="speaking-badge hidden">
+              🔊 Sedang Bicara...
+            </span>
+          </div>
+
+          <!-- 3 Tombol Aksi Interaktif Langsung dengan Karakter AI -->
+          <div class="char-interaction-dock" role="group" aria-label="Aksi Interaktif dengan Karakter Kak Diko">
+            <button id="interactHighFiveBtn" type="button" class="char-action-btn btn-3d-amber">
+              🖐️ Tos High-Five!
+            </button>
+            <button id="interactFeedBtn" type="button" class="char-action-btn btn-3d-emerald">
+              🍎 Kasih Energi
+            </button>
+            <button id="interactRiddleBtn" type="button" class="char-action-btn btn-3d-purple">
+              🎲 Tebak-Tebakan
+            </button>
+          </div>
+
+          <!-- Bar Ganti Cepat 5 Wujud Karakter Kak Diko -->
+          <div class="character-switcher-bar" role="group" aria-label="Pilih Wujud Karakter Kak Diko">
+            <button type="button" data-char-switch="owl" class="char-chip" title="Kak Diko Burung Hantu">
+              🦉 Owl
+            </button>
+            <button type="button" data-char-switch="dino" class="char-chip active" title="Kak Diko Dino Ceria">
+              🦖 Dino
+            </button>
+            <button type="button" data-char-switch="robot" class="char-chip" title="Kak Diko Robo Pintar">
+              🤖 Robo
+            </button>
+            <button type="button" data-char-switch="cat" class="char-chip" title="Kak Diko Kucing Imut">
+              🐱 Neko
+            </button>
+            <button type="button" data-char-switch="astro" class="char-chip" title="Kak Diko Astronot">
+              🚀 Astro
+            </button>
+          </div>
+        </div>
+
+        <!-- KOLOM KANAN: PANEL DIALOG AI, TOPIK PETUALANGAN, & TOMBOL SUARA 3D -->
+        <div class="tutor-card game-dialog-panel">
+          <div class="session-status-bar">
+            <div style="display: flex; flex-wrap: wrap; gap: 0.45rem; align-items: center;">
+              <span class="child-badge">
+                <span class="status-dot"></span>
+                <span id="childNameDisplay">Budi (Kelas 4 SD)</span>
+              </span>
+              <span id="childBioBadge" class="bio-pill">
+                ✨ Hobi: Dinosaurus &amp; Sains
+              </span>
+            </div>
+            <span id="statusBadge" class="state-badge">Siap Mendengarkan</span>
+          </div>
+
+          <!-- Pil Topik Misi Belajar (3D Game Pills) -->
+          <div class="topic-grid" role="group" aria-label="Pilih Misi Topik Belajar">
+            <button type="button" data-topic="kenalan" class="topic-pill active">
+              👋 Ngobrol Seru
+            </button>
+            <button type="button" data-topic="membaca" class="topic-pill">
+              📖 Cerita &amp; Kata
+            </button>
+            <button type="button" data-topic="berhitung" class="topic-pill">
+              🔢 Misi Angka
+            </button>
+            <button type="button" data-topic="alam" class="topic-pill">
+              🔬 Sains Ajaib
+            </button>
+            <button type="button" data-topic="budipekerti" class="topic-pill">
+              💛 Anak Hebat
+            </button>
+            <button type="button" data-topic="english" class="topic-pill">
+              🇬🇧 English Talk
+            </button>
+          </div>
+
+          <!-- Balon Komik Ucapan Asisten AI Kak Diko -->
+          <div class="speech-bubble comic-speech-bubble" aria-live="polite">
+            <div class="bubble-speaker-tag">
+              <span id="bubbleSpeakerName">💬 Kak Diko Berkata:</span>
+              <button id="replayVoiceBtn" type="button" class="mini-audio-replay-btn" title="Dengarkan Ulang Suara Kak Diko">
+                🔊 Putar Suara
+              </button>
+            </div>
+            <p id="bimoResponseText" class="speech-text">
+              Rawrr ceria! Halo sahabat pintar! Aku Kak Diko asisten belajarmu. Kamu bisa mengetuk tubuhku untuk tos, memberi energi, atau tekan tombol mikrofon besar di bawah untuk bicara denganku!
+            </p>
+          </div>
+
+          <!-- Zona Tombol Mikrofon Arcade Raksasa 3D -->
+          <div class="mic-zone">
+            <button
+              id="mainMicBtn"
+              type="button"
+              class="giant-mic-btn arcade-mic-3d"
+              aria-label="Mulai atau Berhenti Bicara dengan Kak Diko"
+            >
+              <span id="micIconSpan">🎙️</span>
+            </button>
+            <p id="micStatusLabel" class="mic-instruction">
+              Ketuk Tombol Mikrofon untuk Bicara dengan Kak Diko!
+            </p>
+          </div>
+
+          <!-- Kotak Transkrip Suara Anak & Kontrol Kecepatan -->
+          <div class="transcript-utility-strip">
+            <div class="transcript-box">
+              <strong>🗣️ Suaramu:</strong>
+              <span id="childTranscriptText">"Belum ada suara yang direkam"</span>
+            </div>
+            <div style="display: flex; gap: 0.4rem;">
+              <button id="slowerVoiceBtn" type="button" class="util-btn amber">
+                🐢 Tempo: <span id="speechRateLabel">Normal</span>
+              </button>
+              <button id="resetSessionBtn" type="button" class="util-btn danger">
+                🔄 Reset
+              </button>
+            </div>
+          </div>
+
+          <!-- Kartu Pertanyaan Kilat & Input Teks Interaktif -->
+          <div class="fallback-section">
+            <p class="fallback-label">
+              ⚡ Ketuk Obrolan Cepat atau Ketik Pertanyaanmu ke Kak Diko:
+            </p>
+            <div class="sim-chips">
+              <button type="button" data-sim="Halo Kak Diko, namaku Budi!" class="sim-chip">
+                👋 "Halo Kak Diko, namaku Budi!"
+              </button>
+              <button type="button" data-sim="Beri aku tantangan matematika seru sesuai kelasku Kak Diko!" class="sim-chip">
+                🧮 "Tantangan Matematika!"
+              </button>
+              <button type="button" data-sim="Ceritakan fakta sains seru tentang dinosaurus dan luar angkasa!" class="sim-chip">
+                🦖 "Fakta Sains &amp; Dino!"
+              </button>
+              <button type="button" data-sim="Ayo latihan bicara bahasa Inggris Kak Diko!" class="sim-chip">
+                🇬🇧 "Latihan English!"
+              </button>
+            </div>
+
+            <form id="fallbackChatForm" class="fallback-form">
+              <input
+                id="fallbackChatInput"
+                type="text"
+                class="fallback-input"
+                placeholder="Tanya apa saja atau jawab teka-teki Kak Diko di sini..."
+                autocomplete="off"
+              />
+              <button id="fallbackSubmitBtn" type="submit" class="fallback-submit btn-3d-emerald">
+                🚀 Kirim
+              </button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Panel Samping Pengaturan Simpel Anak -->
+      <aside id="parentDrawer" class="parent-drawer hidden" aria-label="Pengaturan Simpel Anak">
+        <div class="side-card">
+          <h2 class="side-card-title">🎛️ Pengaturan Simpel Anak</h2>
+          <p class="side-card-sub">
+            Atur suara, suasana dunia belajar Kak Diko, dan sinkronisasi ke HP Orang Tua.
+          </p>
+
+          <div class="setting-row">
+            <label>Suara &amp; Karakter Asisten:</label>
+            <div style="display: flex; gap: 0.45rem;">
+              <button id="muteToggleBtn" type="button" class="util-btn emerald" style="flex: 1;">
+                🔊 Suara Aktif
+              </button>
+              <button id="basicChangeCharBtn" type="button" class="util-btn amber" style="flex: 1;">
+                🎭 Ganti Karakter
+              </button>
+            </div>
+          </div>
+
+          <div class="setting-row">
+            <label for="childThemeSelect">Suasana Dunia Belajar:</label>
+            <select id="childThemeSelect" class="setting-select">
+              <option value="warm">☀️ Petualangan Cerah (Default)</option>
+              <option value="mint">🌿 Hutan Dino Zamrud</option>
+              <option value="sky">🌌 Galaksi Bintang Biru</option>
+            </select>
+          </div>
+
+          <div class="setting-row">
+            <label for="syncCodeInput">🔗 Kode Hubung ke Aplikasi HP Orang Tua:</label>
+            <div class="fallback-form">
+              <input
+                id="syncCodeInput"
+                type="text"
+                class="setting-input"
+                placeholder="Contoh: DIKO-2026"
+                value="DIKO-2026"
+              />
+              <button id="cloudSaveBtn" type="button" class="util-btn emerald">
+                🔄 Sync
+              </button>
+              <button id="cloudLoadBtn" type="button" class="util-btn amber">
+                📥 Muat
+              </button>
+            </div>
+          </div>
+
+          <div id="syncStatusBanner" style="font-size: 0.76rem; font-weight: 800; color: #047857; margin-bottom: 0.5rem;">
+            ✅ Terhubung ke Aplikasi HP Orang Tua (Kode: DIKO-2026).
+          </div>
+
+          <div class="parent-app-promo-box">
+            <div style="font-weight: 800; font-size: 0.85rem; color: #1E293B; margin-bottom: 0.25rem;">
+              📱 Kontrol Orang Tua &amp; Laporan Ada di HP
+            </div>
+            <p style="margin: 0 0 0.6rem; font-size: 0.75rem; color: #475569;">
+              Pengaturan Jam Tidur, Amanat AI Kustom, Kunci Layar, dan Grafik Laporan Perkembangan Anak dikelola terpisah dari HP Orang Tua.
+            </p>
+            <a href="/parent" class="action-primary-btn" style="display: block; text-align: center; text-decoration: none; font-size: 0.84rem; padding: 0.65rem;">
+              📱 Buka Aplikasi HP Orang Tua (/parent)
+            </a>
+          </div>
+        </div>
+
+        <div class="side-card">
+          <h2 class="side-card-title">✨ Kartu Identitas Petualang</h2>
+          <div class="meta-grid">
+            <div class="meta-box">
+              <span>Nama Petualang</span>
+              <strong id="inspectorChildName">Budi</strong>
+            </div>
+            <div class="meta-box">
+              <span>Asisten AI</span>
+              <strong id="inspectorCharacterName">🦖 Dino Ceria</strong>
+            </div>
+            <div class="meta-box">
+              <span>Jenjang Kelas</span>
+              <strong id="inspectorGradeText">Kelas 4 SD</strong>
+            </div>
+            <div class="meta-box">
+              <span>Status Cloud</span>
+              <strong id="inspectorParentSyncStatus">Aktif ✅</strong>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- TAMPILAN 2: PULAU PETUALANGAN LEVEL & MINI-GAMES (KELAS 1 S/D 6)   -->
+    <!-- ================================================================== -->
+    <section id="viewLevels" class="hidden" aria-label="Peta Pulau Level dan Games Kelas 1 sampai 6 SD">
+
+      <div class="level-map-banner island-adventure-map">
+        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem;">
+          <div>
+            <h2 style="margin: 0; font-size: 1.25rem; font-weight: 900; color: #0F172A;">
+              🏝️ Pulau Petualangan Level Bersama Kak Diko (Kelas 1–6 SD)
+            </h2>
+            <p id="levelMapSubtitle" style="margin: 0.2rem 0 0; font-size: 0.85rem; color: #475569; font-weight: 600;">
+              Taklukkan setiap pulau level untuk mengumpulkan ⭐ Bintang, membuka peti harta ilmu, dan meraih Badge Juara!
+            </p>
+          </div>
+          <span id="unlockedLevelCountBadge" class="badge-grade" style="font-size: 0.88rem; padding: 0.4rem 0.9rem;">
+            Pulau Terbuka: 3 / 5
+          </span>
+        </div>
+
+        <!-- Pilihan Cepat Kelas 1 s/d Kelas 6 -->
+        <div class="grade-selector-strip" role="group" aria-label="Pilih Kelas SD">
+          <button type="button" data-select-grade="1" class="grade-pill-btn">🌱 Kelas 1 SD</button>
+          <button type="button" data-select-grade="2" class="grade-pill-btn">🌿 Kelas 2 SD</button>
+          <button type="button" data-select-grade="3" class="grade-pill-btn">🌻 Kelas 3 SD</button>
+          <button type="button" data-select-grade="4" class="grade-pill-btn active">🚀 Kelas 4 SD</button>
+          <button type="button" data-select-grade="5" class="grade-pill-btn">🔬 Kelas 5 SD</button>
+          <button type="button" data-select-grade="6" class="grade-pill-btn">🎓 Kelas 6 SD</button>
+        </div>
+
+        <!-- 5 Pulau Node Level -->
+        <div id="levelNodesContainer" class="level-nodes-row island-nodes-track"></div>
+      </div>
+
+      <!-- Arena Tantangan Kuis Pulau Aktif -->
+      <div class="level-map-banner quiz-arena-3d">
+        <div class="game-card-header">
+          <span id="activeLevelTitleBadge" class="child-badge">🎯 Misi Pulau Level 1</span>
+          <button id="speakLevelQuestionBtn" type="button" class="util-btn amber">
+            🔊 Minta Kak Diko Bacakan Soal
+          </button>
+        </div>
+
+        <p id="levelQuestionText" class="quiz-question-display">
+          Memuat tantangan level...
+        </p>
+
+        <div id="levelChoicesGrid" class="math-choices"></div>
+
+        <div id="levelQuestFeedback" class="quiz-feedback-pill">
+          🎯 Pilih jawaban yang paling tepat untuk mendapatkan ⭐ Bintang dan membuka pulau berikutnya!
+        </div>
+      </div>
+
+      <!-- Mini-Games Interaktif: Mengeja Suku Kata & Berhitung Visual -->
+      <div class="games-grid">
+        <div class="game-card amber-card">
+          <div>
+            <div class="game-card-header">
+              <span class="badge-grade">📖 Mini-Game Suku Kata Ajaib</span>
+              <button id="nextWordBtn" type="button" class="util-btn amber">
+                Kata Baru ➔
+              </button>
+            </div>
+            <div id="wordEmojiDisplay" class="word-emoji">📚</div>
+            <div id="wordSyllablesContainer" class="syllables-row"></div>
+            <p style="text-align: center; font-size: 0.82rem; font-weight: 700; color: #475569; margin: 0.4rem 0 0.9rem;">
+              Ketuk kepingan suku kata untuk mendengar bunyinya!
+            </p>
+          </div>
+          <button id="speakFullWordBtn" type="button" class="action-primary-btn btn-3d-amber">
+            🔊 Dengarkan Kak Diko Mengeja Kata Ini
+          </button>
+        </div>
+
+        <div class="game-card emerald-card">
+          <div>
+            <div class="game-card-header">
+              <span class="child-badge">🔢 Mini-Game Berhitung Cepat</span>
+              <button id="newMathProblemBtn" type="button" class="util-btn emerald">
+                Soal Baru ➔
+              </button>
+            </div>
+            <div id="mathVisualObjects" class="math-objects-box"></div>
+            <p id="mathQuestionLabel" style="text-align: center; font-weight: 800; margin: 0.4rem 0;">
+              Berapa jumlah semuanya?
+            </p>
+            <div id="mathChoicesGrid" class="math-choices"></div>
+          </div>
+          <div id="mathFeedbackBanner" class="quiz-feedback-pill emerald">
+            Pilih salah satu angka jawaban di atas ya!
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- TAMPILAN 3: ENGLISH QUEST (DUOLINGO CHARACTER COMPANION STYLE)     -->
+    <!-- ================================================================== -->
+    <section id="viewEnglish" class="hidden" aria-label="English Quest Duolingo Mode">
+
+      <div class="duo-container">
+        <div class="duo-top-bar">
+          <span class="duo-stat-badge" style="background: #FFEDD5; color: #C2410C; border-color: #FDBA74;">
+            🔥 Streak: <span id="duoStreakCount">3</span> Hari
+          </span>
+          <div class="duo-progress-track" aria-label="Progres Pelajaran Bahasa Inggris">
+            <div id="duoProgressFill" class="duo-progress-fill" style="width: 40%;"></div>
+          </div>
+          <span class="duo-stat-badge" style="background: #FFE4E6; color: #E11D48; border-color: #FDA4AF;">
+            <span id="duoHeartsDisplay">❤️❤️❤️</span>
+          </span>
+          <span id="duoGradeTag" class="badge-grade">English • Kelas 4 SD</span>
+        </div>
+
+        <!-- Kartu Duolingo dengan Karakter Kak Diko Berdiri di Samping Balon Kalimat -->
+        <div class="duo-prompt-card duo-character-stage-card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.65rem;">
+            <span id="duoChallengeTypeBadge" class="child-badge">
+              🧩 Susun Kalimat Bahasa Inggris Bersama Kak Diko!
+            </span>
+            <button id="duoNextExerciseBtn" type="button" class="util-btn amber">
+              Soal Selanjutnya ➔
+            </button>
+          </div>
+
+          <div class="duo-character-dialog-row">
+            <div id="duoCompanionMiniBox" class="duo-companion-avatar-box" title="Ketuk Kak Diko untuk mendengar pelafalan!">
+              🦖
+            </div>
+            <div class="duo-speech-balloon">
+              <div style="display: flex; align-items: center; gap: 0.7rem;">
+                <button
+                  id="duoSpeakPhraseBtn"
+                  type="button"
+                  class="duo-audio-btn"
+                  title="Dengarkan Pelafalan Bahasa Inggris"
+                >
+                  🔊
+                </button>
+                <div>
+                  <p id="duoEnglishPhraseText" style="margin: 0; font-size: 1.22rem; font-weight: 900; color: #0F172A;">
+                    "My favorite hobby is swimming"
+                  </p>
+                  <p id="duoIndoHintText" style="margin: 0.2rem 0 0; font-size: 0.86rem; font-weight: 700; color: #475569;">
+                    Susun dalam Bahasa Inggris: "Hobi favoritku adalah berenang"
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="duoSelectedWordsSlot" class="duo-answer-slot" aria-label="Kotak Susunan Kata"></div>
+        <div id="duoWordBankContainer" class="duo-word-bank"></div>
+
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 0.65rem;">
+          <button id="duoCheckAnswerBtn" type="button" class="duo-check-btn">
+            ✅ PERIKSA JAWABAN
+          </button>
+          <button
+            id="duoVoicePracticeBtn"
+            type="button"
+            class="action-primary-btn"
+            style="background: #1CB0F6; box-shadow: 0 5px 0 #1899D6; font-size: 0.95rem;"
+          >
+            🎙️ Ucapkan (Speak)
+          </button>
+        </div>
+
+        <div
+          id="duoFeedbackBanner"
+          class="duo-feedback-bar"
+          style="background: #F1F5F9; color: #334155;"
+        >
+          Ketuk kepingan kata 3D di atas untuk menyusun jawabanmu, atau tekan 🎙️ Ucapkan untuk latihan speaking!
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- TAMPILAN 4: ALBUM KOLEKSI BADGE & PENCAPAIAN ANAK                  -->
+    <!-- ================================================================== -->
+    <section id="viewBadges" class="hidden" aria-label="Koleksi Badge dan Pencapaian Anak">
+
+      <div class="level-map-banner" style="border-color: #FCD34D;">
+        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem; margin-bottom: 0.75rem;">
+          <div>
+            <h2 style="margin: 0; font-size: 1.25rem; font-weight: 900;">
+              🏆 Ruang Piala &amp; Koleksi 8 Badge Bersama Kak Diko
+            </h2>
+            <p style="margin: 0.25rem 0 0; font-size: 0.85rem; font-weight: 600; color: #475569;">
+              Ketuk badge yang sudah menyala untuk mendengar pujian spesial dari Kak Diko! Semua badge otomatis terkirim ke Aplikasi HP Orang Tua.
+            </p>
+          </div>
+          <span id="badgeSummaryPill" class="badge-grade" style="font-size: 0.88rem; padding: 0.4rem 0.9rem;">
+            Terbuka: 7 / 8 Badge
+          </span>
+        </div>
+
+        <div class="duo-progress-track" style="height: 18px; margin-bottom: 1.1rem;">
+          <div id="badgeCollectionProgressFill" class="duo-progress-fill" style="width: 87%; background: linear-gradient(90deg, #F59E0B, #10B981);"></div>
+        </div>
+
+        <div id="badgesGridContainer" class="badges-grid"></div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ==================================================================== -->
+  <!-- FLOATING INTERACTIVE AI ASSISTANT WIDGET (AKTIF DI SEMUA TAB)        -->
+  <!-- ==================================================================== -->
+  <div id="floatingAiCoPilot" class="floating-copilot-widget" role="complementary" aria-label="Asisten Mengambang Kak Diko">
+    <div id="copilotBubble" class="copilot-speech-pill hidden">
+      <span id="copilotTipText">Hai! Butuh bantuan atau petunjuk soal? Ketuk Kak Diko ya! 💡</span>
+    </div>
+    <button
+      id="copilotTriggerBtn"
+      type="button"
+      class="copilot-avatar-btn"
+      title="Ketuk untuk Minta Petunjuk atau Semangat dari Kak Diko!"
+    >
+      <span id="copilotEmojiSpan">🦖</span>
+      <span class="copilot-ai-tag">AI Hint</span>
+    </button>
+  </div>
+
+  <!-- ==================================================================== -->
+  <!-- MODAL 1: PILIH KARAKTER KAK DIKO, KELAS 1-6 SD & HOBI ANAK           -->
+  <!-- ==================================================================== -->
+  <div id="profileOnboardingModal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modalProfileTitle">
+    <div class="modal-card">
+      <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+        <div id="modalPreviewAvatar" class="brand-character-avatar" style="width: 58px; height: 58px; font-size: 2rem;">
+          🦖
+        </div>
+        <div>
+          <h2 id="modalProfileTitle" style="margin: 0; font-size: 1.18rem; font-weight: 900;">
+            🎭 Pilih Asisten Karakter AI &amp; Kelasmu!
+          </h2>
+          <p style="margin: 0; font-size: 0.8rem; color: #475569; font-weight: 600;">
+            Pilih wujud karakter Kak Diko favoritmu! Panggung, suara, dan tantangan level akan menyesuaikan pilihanmu.
+          </p>
+        </div>
+      </div>
+
+      <div class="setting-row">
+        <label for="profileNameInput">1. Siapa Nama Panggilanmu?</label>
+        <input
+          id="profileNameInput"
+          type="text"
+          class="setting-input"
+          placeholder="Contoh: Budi, Aisyah, Raka..."
+        />
+      </div>
+
+      <div class="setting-row">
+        <label>2. Pilih Karakter Asisten AI "Kak Diko" Favoritmu:</label>
+        <div id="modalCharacterGrid" class="character-select-grid">
+          <button type="button" data-modal-char="owl" class="character-option-card">
+            <span class="char-emoji">🦉</span>
+            <strong>Burung Hantu</strong>
+            <small>Bijak &amp; Ceria</small>
+          </button>
+          <button type="button" data-modal-char="dino" class="character-option-card selected">
+            <span class="char-emoji">🦖</span>
+            <strong>Dino Ceria</strong>
+            <small>Berani &amp; Seru</small>
+          </button>
+          <button type="button" data-modal-char="robot" class="character-option-card">
+            <span class="char-emoji">🤖</span>
+            <strong>Robo Pintar</strong>
+            <small>Sains &amp; Logika</small>
+          </button>
+          <button type="button" data-modal-char="cat" class="character-option-card">
+            <span class="char-emoji">🐱</span>
+            <strong>Kucing Imut</strong>
+            <small>Seni &amp; Cerita</small>
+          </button>
+          <button type="button" data-modal-char="astro" class="character-option-card">
+            <span class="char-emoji">🚀</span>
+            <strong>Astronot</strong>
+            <small>Luar Angkasa</small>
+          </button>
+        </div>
+      </div>
+
+      <div class="setting-row">
+        <label>3. Sekarang Kamu Duduk di Kelas Berapa?</label>
+        <div id="modalGradeGrid" class="grade-select-grid">
+          <button type="button" data-modal-grade="1" class="grade-option-card">
+            🌱 Kelas 1 SD<br /><span style="font-size: 0.7rem; font-weight: 600;">6–7 Tahun</span>
+          </button>
+          <button type="button" data-modal-grade="2" class="grade-option-card">
+            🌿 Kelas 2 SD<br /><span style="font-size: 0.7rem; font-weight: 600;">7–8 Tahun</span>
+          </button>
+          <button type="button" data-modal-grade="3" class="grade-option-card">
+            🌻 Kelas 3 SD<br /><span style="font-size: 0.7rem; font-weight: 600;">8–9 Tahun</span>
+          </button>
+          <button type="button" data-modal-grade="4" class="grade-option-card selected">
+            🚀 Kelas 4 SD<br /><span style="font-size: 0.7rem; font-weight: 600;">9–10 Tahun</span>
+          </button>
+          <button type="button" data-modal-grade="5" class="grade-option-card">
+            🔬 Kelas 5 SD<br /><span style="font-size: 0.7rem; font-weight: 600;">10–11 Tahun</span>
+          </button>
+          <button type="button" data-modal-grade="6" class="grade-option-card">
+            🎓 Kelas 6 SD<br /><span style="font-size: 0.7rem; font-weight: 600;">11–12 Tahun</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="setting-row">
+        <label for="profileBioInput">4. Hobi, Kesukaan, atau Cita-citamu:</label>
+        <input
+          id="profileBioInput"
+          type="text"
+          class="setting-input"
+          placeholder="Contoh: Suka sepak bola dan dinosaurus, cita-cita jadi astronot"
+        />
+        <div class="sim-chips" style="margin-top: 0.35rem; margin-bottom: 0;">
+          <button type="button" data-bio-chip="suka sepak bola dan olahraga" class="sim-chip bio-preset-chip">⚽ Sepak Bola</button>
+          <button type="button" data-bio-chip="suka dinosaurus dan hewan purba" class="sim-chip bio-preset-chip">🦖 Dinosaurus</button>
+          <button type="button" data-bio-chip="suka luar angkasa dan ingin jadi astronot" class="sim-chip bio-preset-chip">🚀 Astronot</button>
+          <button type="button" data-bio-chip="suka menggambar, mewarnai, dan musik" class="sim-chip bio-preset-chip">🎨 Menggambar</button>
+          <button type="button" data-bio-chip="suka kucing lucu dan merawat alam" class="sim-chip bio-preset-chip">🐱 Hewan Lucu</button>
+          <button type="button" data-bio-chip="suka robot, sains, dan eksperimen" class="sim-chip bio-preset-chip">🤖 Robot &amp; Sains</button>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 0.6rem; margin-top: 0.9rem;">
+        <button id="saveProfileOnboardingBtn" type="button" class="action-primary-btn" style="background: #58CC02; box-shadow: 0 4px 0 #46A302;">
+          🚀 Terapkan Karakter &amp; Mulai Bermain!
+        </button>
+        <button id="closeProfileModalBtn" type="button" class="util-btn" style="padding: 0.75rem 1rem;">
+          Tutup
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================================================================== -->
+  <!-- MODAL 2: LAYAR ISTIRAHAT & KUNCI JAM TIDUR DARI HP ORANG TUA         -->
+  <!-- ==================================================================== -->
+  <div id="breakOverlay" class="modal-overlay hidden" role="dialog" aria-modal="true">
+    <div class="modal-card" style="text-align: center; max-width: 440px;">
+      <div style="font-size: 3.4rem; margin-bottom: 0.4rem;">🦖🌙💤</div>
+      <h2 id="breakModalTitle" style="margin: 0 0 0.5rem; font-size: 1.22rem; font-weight: 800;">
+        Waktunya Istirahat &amp; Tidur Tepat Waktu!
+      </h2>
+      <p id="breakModalMessage" style="font-size: 0.9rem; color: #475569; margin: 0 0 1.2rem;">
+        Kak Diko juga mau istirahat nih. Anak pintar istirahat tepat waktu sesuai pengaturan Ayah &amp; Ibu supaya besok makin cerdas!
+      </p>
+      <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+        <button id="extendStudyTimeBtn" type="button" class="action-primary-btn">
+          🔓 Tambah Waktu Belajar (+15 Menit)
+        </button>
+        <a href="/parent" class="util-btn" style="text-decoration: none; text-align: center;">
+          📱 Atur dari Aplikasi HP Orang Tua
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

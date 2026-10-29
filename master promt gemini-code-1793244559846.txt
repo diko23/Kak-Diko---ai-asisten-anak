@@ -1,0 +1,16 @@
+Act as a Senior AI Architect and Full-Stack Developer. I am building a voice-first, interactive AI educational tutor designed specifically for a 1st-grade child (6-7 years old). 
+
+Constraints & Architecture:
+- Client Hardware: An old Chromebook (Intel Celeron, 2GB RAM, 32GB Storage). It must run zero local AI computations to prevent crashing.
+- Frontend: A lightweight Progressive Web App (PWA) using pure HTML, CSS, and Vanilla JavaScript. It utilizes the native Web Speech API (SpeechRecognition for STT and SpeechSynthesis for TTS). The UI is a minimalist, distraction-free interface with a single large microphone button. It MUST manage the conversation history (session memory) locally and send this array with each request so the AI remembers the child's name and context throughout the session.
+- Backend: A serverless Node.js backend hosted on Vercel. It exposes a REST API endpoint (`/api/chat`) to receive the user's new message and the conversation history array from the frontend, process it via the Google Gen AI SDK (e.g., using `startChat` history), and return the text response.
+- AI Model Strategy: The AI must act as a patient, cheerful tutor. Responses must be strictly formatted for Text-to-Speech: maximum 2 short sentences, highly conversational Indonesian, zero markdown formatting (*, #, etc.), use kid-friendly analogies, and always end with a simple follow-up question to encourage two-way interaction.
+
+Your Task:
+Provide the complete, production-ready codebase and deployment instructions for this project.
+1. Frontend Deliverables: Create the complete `index.html`, `app.js` (handling Web Speech API, state management for conversation history, and API fetch), `manifest.json`, and `sw.js` (Service Worker). 
+2. Backend Deliverables: Create the Vercel serverless function `api/chat.js` using the latest Google Gen AI SDK. It must parse the incoming conversation history to maintain context seamlessly. Include robust error handling and CORS.
+3. System Prompt: Write the exact `systemInstruction` payload to enforce the strict 1st-grade TTS formatting rules, and explicitly instruct the AI to ask for and remember the child's name naturally.
+4. Deployment: Provide a concise step-by-step guide for deploying the frontend as a static site and the backend as a Vercel serverless function.
+
+Ensure all code is highly optimized, handles edge cases (like microphone permission denial or API timeouts), and is ready to be copy-pasted into my IDE.

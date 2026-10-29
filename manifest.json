@@ -1,0 +1,24 @@
+{
+  "name": "Kak Diko SD (Kelas 1–6) — Tutor Suara AI, Karakter Kustom, Level & Badge",
+  "short_name": "Kak Diko SD",
+  "description": "Aplikasi belajar interaktif berbasis suara (Voice-First AI), karakter kustom Kak Diko, Peta Level SD 1-6, Duolingo English Quest, & Koleksi Badge untuk Chromebook 2GB RAM.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#FFFBEB",
+  "theme_color": "#F59E0B",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

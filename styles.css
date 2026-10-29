@@ -1,0 +1,2314 @@
+/* ==========================================================================
+   File: styles.css
+   Stylesheet Murni Super Ringan untuk PWA Kak Bimo SD (Kelas 1 s/d Kelas 6)
+   Ramah Chromebook 2GB RAM / 32GB Storage • Tanpa Framework CSS Berat
+   ========================================================================== */
+
+:root {
+  --bg-cream: #FFFBEB;
+  --bg-card: #FFFFFF;
+  --bg-amber-soft: #FEF3C7;
+  --bg-emerald-soft: #D1FAE5;
+  --bg-blue-soft: #DBEAFE;
+  --bg-slate-soft: #F8FAFC;
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --amber-primary: #F59E0B;
+  --amber-dark: #B45309;
+  --amber-border: #FCD34D;
+  --orange-accent: #EA580C;
+  --emerald-primary: #10B981;
+  --emerald-dark: #047857;
+  --duo-green: #58CC02;
+  --duo-green-dark: #46A302;
+  --blue-primary: #2563EB;
+  --red-primary: #EF4444;
+  --border-light: #E2E8F0;
+  --radius-xl: 24px;
+  --radius-lg: 16px;
+  --radius-pill: 9999px;
+  --shadow-soft: 0 8px 24px -4px rgba(15, 23, 42, 0.07);
+  --shadow-mic: 0 14px 30px -6px rgba(234, 88, 12, 0.42);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: var(--bg-cream);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Header Navigasi Atas */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: rgba(255, 255, 255, 0.97);
+  border-bottom: 2px solid var(--amber-border);
+  padding: 0.65rem 1rem;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+}
+
+.header-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+}
+
+.brand-group {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.brand-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid var(--amber-primary);
+  object-fit: cover;
+  background: var(--bg-amber-soft);
+}
+
+.brand-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.brand-title {
+  margin: 0;
+  font-size: 1.08rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.badge-grade {
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 0.15rem 0.6rem;
+  border-radius: var(--radius-pill);
+  background: var(--bg-amber-soft);
+  color: var(--amber-dark);
+  border: 1px solid var(--amber-border);
+}
+
+.brand-subtitle {
+  margin: 0;
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+}
+
+/* Tab Mode Utama */
+.mode-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: var(--bg-cream);
+  padding: 0.25rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--amber-border);
+  flex-wrap: wrap;
+}
+
+.mode-tab-btn {
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 0.45rem 0.8rem;
+  border-radius: 12px;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.mode-tab-btn:hover {
+  background: var(--bg-amber-soft);
+  color: var(--text-primary);
+}
+
+.mode-tab-btn.active {
+  background: var(--amber-primary);
+  color: #FFFFFF;
+  box-shadow: 0 2px 6px rgba(245, 158, 11, 0.35);
+}
+
+.mode-tab-btn.duo-tab.active {
+  background: var(--duo-green);
+  color: #FFFFFF;
+  box-shadow: 0 2px 6px rgba(88, 204, 2, 0.35);
+}
+
+/* Kontrol Status & Bintang di Kanan Header */
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.star-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: var(--bg-amber-soft);
+  border: 1px solid var(--amber-border);
+  padding: 0.32rem 0.68rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--amber-dark);
+}
+
+.xp-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: var(--bg-blue-soft);
+  border: 1px solid #93C5FD;
+  padding: 0.32rem 0.68rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #1D4ED8;
+}
+
+.timer-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+  background: var(--bg-slate-soft);
+  border: 1px solid var(--border-light);
+  padding: 0.32rem 0.6rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.icon-btn {
+  border: 1px solid var(--border-light);
+  background: #FFFFFF;
+  color: var(--text-primary);
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 0.36rem 0.7rem;
+  border-radius: var(--radius-pill);
+  transition: background-color 0.15s ease;
+}
+
+.icon-btn:hover {
+  background: var(--bg-slate-soft);
+}
+
+.icon-btn.profile-btn {
+  border-color: var(--amber-border);
+  background: #FFFBEB;
+  color: var(--amber-dark);
+  font-weight: 800;
+}
+
+/* Kontainer Utama */
+.app-main {
+  max-width: 1080px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.15rem 1rem 2.5rem;
+}
+
+.tutor-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+@media (min-width: 920px) {
+  .tutor-layout.with-drawer {
+    grid-template-columns: 7fr 5fr;
+  }
+}
+
+/* Kartu Utama Tutor Suara Anak */
+.tutor-card {
+  background: var(--bg-card);
+  border: 4px solid var(--amber-border);
+  border-radius: var(--radius-xl);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.session-status-bar {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-bottom: 0.75rem;
+  margin-bottom: 0.85rem;
+  border-bottom: 1px solid #FEF3C7;
+}
+
+.child-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-pill);
+  background: var(--bg-emerald-soft);
+  color: var(--emerald-dark);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.bio-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.26rem 0.7rem;
+  border-radius: var(--radius-pill);
+  background: #F3E8FF;
+  color: #6B21A8;
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--emerald-primary);
+}
+
+.state-badge {
+  font-size: 0.76rem;
+  font-weight: 800;
+  padding: 0.28rem 0.75rem;
+  border-radius: var(--radius-pill);
+  background: var(--bg-amber-soft);
+  color: var(--amber-dark);
+}
+
+/* Pil Topik Kurikulum Merdeka Kelas 1-6 SD */
+.topic-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.45rem;
+  margin-bottom: 1.1rem;
+}
+
+@media (min-width: 640px) {
+  .topic-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+.topic-pill {
+  padding: 0.5rem 0.4rem;
+  border-radius: 13px;
+  font-size: 0.76rem;
+  font-weight: 800;
+  border: 2px solid var(--border-light);
+  background: var(--bg-slate-soft);
+  color: var(--text-primary);
+  transition: all 0.15s ease;
+}
+
+.topic-pill:hover {
+  border-color: var(--amber-border);
+  background: #FFFBEB;
+}
+
+.topic-pill.active {
+  border-color: var(--amber-primary);
+  background: var(--bg-amber-soft);
+  color: var(--amber-dark);
+  box-shadow: 0 2px 6px rgba(245, 158, 11, 0.2);
+}
+
+/* Avatar Maskot Kak Bimo */
+.mascot-wrapper {
+  position: relative;
+  margin-bottom: 0.75rem;
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+.mascot-avatar {
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  border: 4px solid var(--amber-primary);
+  object-fit: cover;
+  box-shadow: 0 6px 18px rgba(245, 158, 11, 0.28);
+  animation: floatSlow 3.2s ease-in-out infinite;
+}
+
+.speaking-badge {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  background: var(--emerald-primary);
+  color: #FFFFFF;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 0.18rem 0.55rem;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+}
+
+/* Balon Ucapan Kak Bimo */
+.speech-bubble {
+  width: 100%;
+  max-width: 680px;
+  background: #FFFBEB;
+  border: 2px solid var(--amber-border);
+  border-radius: 22px;
+  padding: 1rem 1.2rem;
+  margin-bottom: 1.1rem;
+  min-height: 92px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.speech-text {
+  margin: 0;
+  font-size: 1.12rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.52;
+}
+
+/* Tombol Mikrofon Tunggal Raksasa */
+.mic-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0.2rem 0 0.85rem;
+}
+
+@keyframes pulseRing {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.55); }
+  70% { transform: scale(1.05); box-shadow: 0 0 0 22px rgba(239, 68, 68, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+.giant-mic-btn {
+  width: 136px;
+  height: 136px;
+  border-radius: 50%;
+  border: 5px solid #FFFFFF;
+  background: linear-gradient(135deg, var(--amber-primary), var(--orange-accent));
+  color: #FFFFFF;
+  font-size: 3.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-mic);
+  transition: transform 0.12s ease, background 0.2s ease;
+}
+
+.giant-mic-btn:active {
+  transform: scale(0.95);
+}
+
+.giant-mic-btn.mic-listening {
+  animation: pulseRing 1.25s infinite;
+  background: linear-gradient(135deg, #EF4444, #DC2626);
+}
+
+.giant-mic-btn.mic-thinking {
+  background: linear-gradient(135deg, #3B82F6, #1D4ED8);
+}
+
+.giant-mic-btn.mic-speaking {
+  background: linear-gradient(135deg, #10B981, #059669);
+}
+
+.mic-instruction {
+  margin: 0;
+  font-size: 0.96rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+/* Kotak Transkrip Ucapan Anak */
+.transcript-box {
+  width: 100%;
+  max-width: 680px;
+  background: var(--bg-slate-soft);
+  border: 1px dashed #CBD5E1;
+  border-radius: 14px;
+  padding: 0.55rem 0.85rem;
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+}
+
+/* Tombol Bantu Suara */
+.utility-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  margin-top: 0.85rem;
+}
+
+.util-btn {
+  padding: 0.46rem 0.85rem;
+  border-radius: 12px;
+  font-size: 0.76rem;
+  font-weight: 800;
+  border: 1px solid var(--border-light);
+  background: var(--bg-slate-soft);
+  color: var(--text-primary);
+}
+
+.util-btn.amber {
+  background: var(--bg-amber-soft);
+  border-color: var(--amber-border);
+  color: var(--amber-dark);
+}
+
+.util-btn.emerald {
+  background: var(--bg-emerald-soft);
+  border-color: #6EE7B7;
+  color: var(--emerald-dark);
+}
+
+.util-btn.danger {
+  background: #FFF1F2;
+  border-color: #FECDD3;
+  color: #BE123C;
+}
+
+/* Area Simulasi & Input Teks Cadangan */
+.fallback-section {
+  width: 100%;
+  max-width: 680px;
+  margin-top: 1.1rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--border-light);
+  text-align: left;
+}
+
+.fallback-label {
+  margin: 0 0 0.45rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.sim-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.65rem;
+}
+
+.sim-chip {
+  border: 1px solid var(--border-light);
+  background: var(--bg-slate-soft);
+  color: var(--text-primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.36rem 0.65rem;
+  border-radius: 10px;
+}
+
+.sim-chip:hover {
+  background: var(--bg-amber-soft);
+  border-color: var(--amber-border);
+}
+
+.fallback-form {
+  display: flex;
+  gap: 0.45rem;
+}
+
+.fallback-input {
+  flex: 1;
+  padding: 0.6rem 0.8rem;
+  border-radius: 12px;
+  border: 2px solid var(--border-light);
+  font-size: 0.86rem;
+}
+
+.fallback-input:focus {
+  outline: none;
+  border-color: var(--amber-primary);
+}
+
+.fallback-submit {
+  padding: 0.6rem 1rem;
+  border-radius: 12px;
+  border: none;
+  background: var(--emerald-primary);
+  color: #FFFFFF;
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+/* ==========================================================================
+   VIEW 2: PETA LEVEL & GAMES BERTAHAP PER KELAS (KELAS 1 S/D 6)
+   ========================================================================== */
+.level-map-banner {
+  background: var(--bg-card);
+  border: 3px solid var(--amber-border);
+  border-radius: var(--radius-xl);
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.grade-selector-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.75rem 0 1rem;
+}
+
+.grade-pill-btn {
+  padding: 0.45rem 0.85rem;
+  border-radius: 12px;
+  border: 2px solid var(--border-light);
+  background: var(--bg-slate-soft);
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.grade-pill-btn.active {
+  border-color: var(--amber-primary);
+  background: var(--amber-primary);
+  color: #FFFFFF;
+}
+
+.level-nodes-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+@media (min-width: 720px) {
+  .level-nodes-row {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.level-node-card {
+  border: 2px solid var(--border-light);
+  border-radius: 18px;
+  padding: 0.85rem 0.7rem;
+  text-align: center;
+  background: var(--bg-slate-soft);
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.level-node-card.unlocked {
+  background: #FFFBEB;
+  border-color: var(--amber-primary);
+  cursor: pointer;
+}
+
+.level-node-card.active-level {
+  background: var(--bg-amber-soft);
+  border: 3px solid var(--orange-accent);
+  transform: translateY(-2px);
+}
+
+.level-node-card.locked {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   VIEW 3: DUOLINGO-STYLE ENGLISH QUEST (BAHASA INGGRIS SD KELAS 1-6)
+   ========================================================================== */
+.duo-container {
+  background: var(--bg-card);
+  border: 3px solid #86EFAC;
+  border-radius: var(--radius-xl);
+  padding: 1.35rem;
+  box-shadow: var(--shadow-soft);
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.duo-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1.1rem;
+  flex-wrap: wrap;
+}
+
+.duo-progress-track {
+  flex: 1;
+  min-width: 160px;
+  height: 16px;
+  background: #E2E8F0;
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+
+.duo-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #58CC02, #89E219);
+  border-radius: var(--radius-pill);
+  transition: width 0.3s ease;
+}
+
+.duo-stat-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.84rem;
+  font-weight: 800;
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--radius-pill);
+  background: var(--bg-slate-soft);
+  border: 1px solid var(--border-light);
+}
+
+.duo-prompt-card {
+  background: #F8FAFC;
+  border: 2px solid var(--border-light);
+  border-radius: 20px;
+  padding: 1.15rem;
+  margin-bottom: 1rem;
+}
+
+.duo-speaker-row {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 0.75rem;
+}
+
+.duo-audio-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  border: none;
+  background: #1CB0F6;
+  color: #FFFFFF;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 0 #1899D6;
+  flex-shrink: 0;
+}
+
+.duo-audio-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #1899D6;
+}
+
+.duo-answer-slot {
+  min-height: 62px;
+  border: 2px dashed #94A3B8;
+  border-radius: 16px;
+  background: #FFFFFF;
+  padding: 0.65rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+  margin-bottom: 0.9rem;
+}
+
+.duo-word-bank {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 1.1rem;
+}
+
+.duo-word-tile {
+  padding: 0.55rem 0.95rem;
+  border-radius: 14px;
+  border: 2px solid #CBD5E1;
+  border-bottom-width: 4px;
+  background: #FFFFFF;
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  transition: transform 0.1s ease;
+}
+
+.duo-word-tile:active {
+  transform: translateY(2px);
+}
+
+.duo-word-tile.selected {
+  background: #DCFCE7;
+  border-color: #22C55E;
+  color: #15803D;
+}
+
+.duo-check-btn {
+  width: 100%;
+  padding: 0.85rem;
+  border-radius: 16px;
+  border: none;
+  background: var(--duo-green);
+  box-shadow: 0 4px 0 var(--duo-green-dark);
+  color: #FFFFFF;
+  font-size: 0.96rem;
+  font-weight: 800;
+}
+
+.duo-feedback-bar {
+  margin-top: 0.9rem;
+  padding: 0.75rem 1rem;
+  border-radius: 14px;
+  font-size: 0.86rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+/* Panel Samping Orang Tua / Guru */
+.parent-drawer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.side-card {
+  background: var(--bg-card);
+  border: 2px solid var(--border-light);
+  border-radius: 20px;
+  padding: 1.1rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.side-card-title {
+  margin: 0 0 0.25rem;
+  font-size: 0.92rem;
+  font-weight: 800;
+}
+
+.side-card-sub {
+  margin: 0 0 0.8rem;
+  font-size: 0.74rem;
+  color: var(--text-secondary);
+}
+
+.meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.45rem;
+  margin-bottom: 0.75rem;
+}
+
+.meta-box {
+  background: var(--bg-slate-soft);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 0.5rem 0.65rem;
+  font-size: 0.74rem;
+}
+
+.meta-box span {
+  display: block;
+  color: var(--text-secondary);
+}
+
+.meta-box strong {
+  font-size: 0.84rem;
+  color: var(--text-primary);
+}
+
+.history-log {
+  max-height: 185px;
+  overflow-y: auto;
+  background: #0F172A;
+  color: #F8FAFC;
+  border-radius: 14px;
+  padding: 0.7rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.73rem;
+}
+
+.history-item {
+  padding-bottom: 0.4rem;
+  margin-bottom: 0.4rem;
+  border-bottom: 1px solid #1E293B;
+}
+
+.role-user {
+  color: #FCD34D;
+  font-weight: 700;
+}
+
+.role-model {
+  color: #6EE7B7;
+  font-weight: 700;
+}
+
+.setting-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-bottom: 0.7rem;
+  font-size: 0.78rem;
+}
+
+.setting-row label {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.setting-input,
+.setting-select,
+.setting-textarea {
+  padding: 0.5rem 0.68rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-light);
+  font-size: 0.8rem;
+  width: 100%;
+}
+
+/* Modul Latihan Visual Pendamping */
+.games-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.15rem;
+  margin-top: 1.15rem;
+}
+
+@media (min-width: 768px) {
+  .games-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.game-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-xl);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.game-card.amber-card {
+  border: 3px solid var(--amber-border);
+}
+
+.game-card.emerald-card {
+  border: 3px solid #6EE7B7;
+}
+
+.game-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.word-emoji {
+  font-size: 3.3rem;
+  text-align: center;
+  margin: 0.4rem 0;
+}
+
+.syllables-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin: 0.65rem 0;
+  flex-wrap: wrap;
+}
+
+.syllable-btn {
+  padding: 0.65rem 1.2rem;
+  border-radius: 16px;
+  background: #FFFBEB;
+  border: 2px solid var(--amber-primary);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--amber-dark);
+}
+
+.math-objects-box {
+  background: #ECFDF5;
+  border: 2px solid #A7F3D0;
+  border-radius: 18px;
+  padding: 0.9rem;
+  min-height: 86px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1.55rem;
+  margin-bottom: 0.75rem;
+}
+
+.math-choices {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+  margin: 0.65rem 0;
+}
+
+.math-choice-btn {
+  padding: 0.7rem;
+  border-radius: 16px;
+  background: #FFFFFF;
+  border: 2px solid var(--emerald-primary);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--emerald-dark);
+}
+
+.action-primary-btn {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 14px;
+  border: none;
+  background: var(--amber-primary);
+  color: #FFFFFF;
+  font-size: 0.88rem;
+  font-weight: 800;
+}
+
+/* Modal Onboarding Profil & Layar Istirahat Jam Tidur */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: rgba(15, 23, 42, 0.72);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.modal-card {
+  background: #FFFFFF;
+  border: 4px solid var(--amber-primary);
+  border-radius: var(--radius-xl);
+  max-width: 540px;
+  width: 100%;
+  padding: 1.5rem;
+  max-height: 92vh;
+  overflow-y: auto;
+}
+
+.grade-select-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin: 0.5rem 0 1rem;
+}
+
+.grade-option-card {
+  border: 2px solid var(--border-light);
+  background: var(--bg-slate-soft);
+  border-radius: 14px;
+  padding: 0.6rem 0.5rem;
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.grade-option-card.selected {
+  border-color: var(--amber-primary);
+  background: var(--bg-amber-soft);
+  color: var(--amber-dark);
+}
+
+
+/* ==========================================================================
+   V3.0: KUSTOMISASI KARAKTER "KAK DIKO", KOLEKSI BADGE & APLIKASI HP ORANG TUA
+   ========================================================================== */
+
+.brand-character-avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 3px solid var(--amber-primary);
+  background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.55rem;
+  box-shadow: 0 3px 8px rgba(245, 158, 11, 0.25);
+  flex-shrink: 0;
+}
+
+.mode-tab-btn.badge-tab.active {
+  background: #8B5CF6;
+  color: #FFFFFF;
+}
+
+.parent-app-pill {
+  background: #0F172A !important;
+  color: #FFFFFF !important;
+  border-color: #334155 !important;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.parent-cheer-banner {
+  background: linear-gradient(90deg, #ECFDF5, #FEF3C7);
+  border: 2px solid #10B981;
+  border-radius: 16px;
+  padding: 0.65rem 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: 0.86rem;
+  font-weight: 800;
+  color: #065F46;
+  box-shadow: var(--shadow-soft);
+}
+
+.cheer-close-btn {
+  border: none;
+  background: rgba(15, 23, 42, 0.08);
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  font-weight: 800;
+}
+
+/* Bar Pilihan Karakter Kustom Kak Diko */
+.character-switcher-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  width: 100%;
+  max-width: 720px;
+  background: #F8FAFC;
+  border: 1.5px solid var(--border-light);
+  border-radius: 16px;
+  padding: 0.45rem 0.65rem;
+  margin-bottom: 0.75rem;
+}
+
+.char-bar-label {
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: var(--text-secondary);
+  margin-right: 0.2rem;
+}
+
+.char-chip {
+  padding: 0.35rem 0.7rem;
+  border-radius: var(--radius-pill);
+  border: 2px solid var(--border-light);
+  background: #FFFFFF;
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  transition: all 0.15s ease;
+}
+
+.char-chip.active {
+  background: var(--bg-amber-soft);
+  border-color: var(--amber-primary);
+  color: var(--amber-dark);
+  transform: translateY(-1px);
+}
+
+.mascot-character-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mascot-custom-svg svg {
+  border-radius: 50%;
+  border: 4px solid var(--amber-primary);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+  background: #FFFFFF;
+}
+
+.char-name-tag {
+  margin-top: 0.35rem;
+  font-size: 0.76rem;
+  font-weight: 800;
+  padding: 0.2rem 0.7rem;
+  border-radius: var(--radius-pill);
+  background: #FFFBEB;
+  border: 1.5px solid var(--amber-primary);
+  color: var(--amber-dark);
+}
+
+/* Modal Character Grid */
+.character-select-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.4rem;
+  margin: 0.35rem 0 0.6rem;
+}
+
+@media (max-width: 560px) {
+  .character-select-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.character-option-card {
+  border: 2px solid var(--border-light);
+  background: var(--bg-slate-soft);
+  border-radius: 14px;
+  padding: 0.5rem 0.35rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  text-align: center;
+}
+
+.character-option-card .char-emoji {
+  font-size: 1.55rem;
+}
+
+.character-option-card strong {
+  font-size: 0.72rem;
+  color: var(--text-primary);
+}
+
+.character-option-card small {
+  font-size: 0.64rem;
+  color: var(--text-secondary);
+}
+
+.character-option-card.selected {
+  border-color: var(--amber-primary);
+  background: var(--bg-amber-soft);
+}
+
+/* Promo Box ke Aplikasi HP Orang Tua */
+.parent-app-promo-box {
+  background: #F8FAFC;
+  border: 2px dashed #94A3B8;
+  border-radius: 16px;
+  padding: 0.85rem;
+  margin-top: 0.65rem;
+}
+
+/* ==========================================================================
+   VIEW 4: ALBUM KOLEKSI 8 BADGE PENCAPAIAN ANAK
+   ========================================================================== */
+.badges-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.85rem;
+}
+
+@media (min-width: 768px) {
+  .badges-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.badge-collect-card {
+  border: 2.5px solid var(--border-light);
+  border-radius: 20px;
+  padding: 1rem 0.85rem;
+  background: #F8FAFC;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.35rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.badge-collect-card.unlocked {
+  background: linear-gradient(180deg, #FFFBEB 0%, #FFFFFF 100%);
+  border-color: var(--amber-primary);
+  box-shadow: 0 6px 16px rgba(245, 158, 11, 0.14);
+}
+
+.badge-collect-card.unlocked:hover {
+  transform: translateY(-3px);
+}
+
+.badge-collect-card.locked {
+  opacity: 0.68;
+}
+
+.badge-emblem-circle {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: #FEF3C7;
+  border: 3px solid #F59E0B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin-bottom: 0.2rem;
+}
+
+.badge-collect-card.locked .badge-emblem-circle {
+  background: #E2E8F0;
+  border-color: #CBD5E1;
+}
+
+.badge-category-tag {
+  font-size: 0.66rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #64748B;
+}
+
+.badge-card-title {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.badge-card-desc {
+  margin: 0;
+  font-size: 0.74rem;
+  color: var(--text-secondary);
+  line-height: 1.35;
+}
+
+.badge-status-pill {
+  margin-top: auto;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-pill);
+}
+
+.badge-status-pill.earned {
+  background: #D1FAE5;
+  color: #047857;
+}
+
+.badge-status-pill.pending {
+  background: #E2E8F0;
+  color: #475569;
+}
+
+/* ==========================================================================
+   APLIKASI HP KHUSUS ORANG TUA ("DIKO PARENT MONITOR" - /parent)
+   ========================================================================== */
+.parent-app-body {
+  background: #0F172A;
+  min-height: 100vh;
+  margin: 0;
+  color: #0F172A;
+}
+
+.demo-bridge-bar {
+  background: #1E293B;
+  border-bottom: 1px solid #334155;
+  color: #F8FAFC;
+  padding: 0.55rem 1rem;
+  font-size: 0.8rem;
+}
+
+.demo-bridge-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.demo-live-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #10B981;
+  display: inline-block;
+}
+
+.demo-code-pill {
+  background: #0F172A;
+  border: 1px solid #475569;
+  padding: 0.18rem 0.55rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.74rem;
+}
+
+.demo-bridge-btn {
+  padding: 0.38rem 0.75rem;
+  border-radius: 10px;
+  border: 1px solid #475569;
+  background: #334155;
+  color: #FFFFFF;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.demo-bridge-btn.primary {
+  background: #F59E0B;
+  border-color: #D97706;
+  color: #0F172A;
+}
+
+.phone-shell-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 1.1rem 0.75rem 2.2rem;
+}
+
+.phone-app-container {
+  width: 100%;
+  max-width: 480px;
+  background: #F8FAFC;
+  border-radius: 32px;
+  border: 6px solid #334155;
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.phone-app-header {
+  background: linear-gradient(145deg, #0F172A, #1E293B);
+  padding: 1.1rem 1rem 0.8rem;
+  color: #FFFFFF;
+}
+
+.phone-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.85rem;
+}
+
+.phone-avatar-circle {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #10B981;
+  border: 2.5px solid #A7F3D0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.55rem;
+}
+
+.phone-online-badge {
+  font-size: 0.68rem;
+  font-weight: 800;
+  background: rgba(16, 185, 129, 0.2);
+  color: #34D399;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-pill);
+}
+
+.phone-sync-box {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.phone-sync-input {
+  width: 92px;
+  padding: 0.32rem 0.45rem;
+  border-radius: 8px;
+  border: 1px solid #475569;
+  background: #0F172A;
+  color: #F8FAFC;
+  font-size: 0.74rem;
+  font-weight: 800;
+}
+
+.phone-sync-btn {
+  padding: 0.32rem 0.55rem;
+  border-radius: 8px;
+  border: none;
+  background: #10B981;
+  color: #FFFFFF;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.phone-tab-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.35rem;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.3rem;
+  border-radius: 14px;
+}
+
+.phone-tab-btn {
+  border: none;
+  background: transparent;
+  color: #CBD5E1;
+  font-size: 0.76rem;
+  font-weight: 800;
+  padding: 0.48rem 0.35rem;
+  border-radius: 10px;
+}
+
+.phone-tab-btn.active {
+  background: #F59E0B;
+  color: #0F172A;
+}
+
+.phone-toast-banner {
+  background: #ECFDF5;
+  border-bottom: 1px solid #6EE7B7;
+  color: #047857;
+  padding: 0.48rem 0.9rem;
+  font-size: 0.74rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.phone-view-content {
+  padding: 0.95rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.phone-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.55rem;
+}
+
+.phone-metric-card {
+  border-radius: 16px;
+  padding: 0.7rem 0.8rem;
+  background: #FFFFFF;
+  border: 1.5px solid var(--border-light);
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.phone-metric-card .m-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #64748B;
+}
+
+.phone-metric-card .m-value {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #0F172A;
+}
+
+.phone-metric-card.amber { background: #FFFBEB; border-color: #FDE68A; }
+.phone-metric-card.blue { background: #EFF6FF; border-color: #BFDBFE; }
+.phone-metric-card.emerald { background: #ECFDF5; border-color: #A7F3D0; }
+.phone-metric-card.rose { background: #FFF1F2; border-color: #FECDD3; }
+
+.phone-card {
+  background: #FFFFFF;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 18px;
+  padding: 0.9rem;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+}
+
+.phone-card.highlight-card {
+  background: linear-gradient(180deg, #FFFBEB, #FFFFFF);
+  border-color: #FCD34D;
+}
+
+.phone-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.55rem;
+}
+
+.phone-card-title {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #0F172A;
+}
+
+.phone-card-sub {
+  margin: 0.15rem 0 0;
+  font-size: 0.73rem;
+  color: #64748B;
+}
+
+.skill-bars-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.skill-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.skill-label-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #334155;
+}
+
+.skill-bar-track {
+  height: 9px;
+  background: #E2E8F0;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.skill-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+}
+
+.skill-bar-fill.amber { background: #F59E0B; }
+.skill-bar-fill.emerald { background: #10B981; }
+.skill-bar-fill.blue { background: #3B82F6; }
+.skill-bar-fill.purple { background: #8B5CF6; }
+.skill-bar-fill.green { background: #22C55E; }
+
+.phone-activity-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.phone-feed-item {
+  background: #F8FAFC;
+  border-left: 3px solid #10B981;
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+  font-size: 0.74rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.phone-feed-item .feed-time {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #059669;
+}
+
+.phone-chat-preview {
+  background: #0F172A;
+  color: #F8FAFC;
+  border-radius: 12px;
+  padding: 0.6rem;
+  font-size: 0.72rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.parent-badges-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.45rem;
+  margin-top: 0.55rem;
+}
+
+.parent-badge-card {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.55rem 0.7rem;
+  border-radius: 12px;
+  border: 1.5px solid #E2E8F0;
+  background: #F8FAFC;
+}
+
+.parent-badge-card.unlocked {
+  background: #FFFBEB;
+  border-color: #FCD34D;
+}
+
+.parent-badge-card.locked {
+  opacity: 0.6;
+}
+
+.p-badge-icon {
+  font-size: 1.45rem;
+}
+
+.p-badge-title {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #0F172A;
+}
+
+.p-badge-desc {
+  font-size: 0.68rem;
+  color: #64748B;
+}
+
+
+/* ==========================================================================
+   V4.0: VIBECODE PROFESIONAL — GAME-GRADE KID UI & LIVING AI CHARACTER RIG
+   ========================================================================== */
+
+body.kid-game-world {
+  background: linear-gradient(180deg, #E0F2FE 0%, #FEF9C3 55%, #DCFCE7 100%);
+  background-attachment: fixed;
+}
+
+.game-hud-header {
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom: 4px solid #F59E0B;
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.15);
+}
+
+.game-mode-nav {
+  background: #F1F5F9;
+  border: 2px solid #CBD5E1;
+  border-bottom-width: 4px;
+  padding: 0.3rem;
+}
+
+.mode-tab-btn {
+  font-size: 0.84rem;
+  font-weight: 900;
+  padding: 0.5rem 1rem;
+  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.15s ease;
+}
+
+.mode-tab-btn.active {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.18);
+}
+
+.hud-pill-3d {
+  border-bottom-width: 4px !important;
+  font-weight: 900 !important;
+  font-size: 0.88rem !important;
+  padding: 0.36rem 0.8rem !important;
+}
+
+.btn-3d-amber {
+  background: linear-gradient(180deg, #FBBF24, #F59E0B) !important;
+  color: #FFFFFF !important;
+  border: 2px solid #D97706 !important;
+  border-bottom-width: 5px !important;
+  font-weight: 900 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.btn-3d-emerald {
+  background: linear-gradient(180deg, #34D399, #10B981) !important;
+  color: #FFFFFF !important;
+  border: 2px solid #059669 !important;
+  border-bottom-width: 5px !important;
+  font-weight: 900 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.btn-3d-purple {
+  background: linear-gradient(180deg, #A78BFA, #8B5CF6) !important;
+  color: #FFFFFF !important;
+  border: 2px solid #6D28D9 !important;
+  border-bottom-width: 5px !important;
+  font-weight: 900 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.btn-3d-white {
+  background: #FFFFFF !important;
+  color: #1E293B !important;
+  border: 2px solid #CBD5E1 !important;
+  border-bottom-width: 5px !important;
+  font-weight: 900 !important;
+}
+
+.btn-3d-dark {
+  background: linear-gradient(180deg, #334155, #0F172A) !important;
+  color: #FFFFFF !important;
+  border: 2px solid #0F172A !important;
+  border-bottom-width: 5px !important;
+  font-weight: 900 !important;
+}
+
+.btn-3d-amber:active,
+.btn-3d-emerald:active,
+.btn-3d-purple:active,
+.btn-3d-white:active,
+.btn-3d-dark:active {
+  transform: translateY(2px);
+  border-bottom-width: 3px !important;
+}
+
+/* ==========================================================================
+   SPLIT STAGE LAYOUT: PANGGUNG KARAKTER AI HIDUP + PANEL DIALOG SUARA
+   ========================================================================== */
+.tutor-stage-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  align-items: stretch;
+}
+
+@media (min-width: 900px) {
+  .tutor-stage-grid {
+    grid-template-columns: 410px 1fr;
+  }
+}
+
+.character-live-stage {
+  position: relative;
+  border-radius: 32px;
+  border: 4px solid #10B981;
+  border-bottom-width: 8px;
+  background: linear-gradient(180deg, #A7F3D0 0%, #FEF9C3 62%, #6EE7B7 100%);
+  padding: 0.9rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 14px 32px rgba(16, 185, 129, 0.18);
+  overflow: hidden;
+  transition: background 0.35s ease, border-color 0.35s ease;
+}
+
+body[data-scene="owl"] .character-live-stage {
+  background: linear-gradient(180deg, #FDE68A 0%, #FFFBEB 62%, #FCD34D 100%);
+  border-color: #F59E0B;
+}
+
+body[data-scene="dino"] .character-live-stage {
+  background: linear-gradient(180deg, #A7F3D0 0%, #FEF9C3 62%, #6EE7B7 100%);
+  border-color: #10B981;
+}
+
+body[data-scene="robot"] .character-live-stage {
+  background: linear-gradient(180deg, #BAE6FD 0%, #EFF6FF 62%, #93C5FD 100%);
+  border-color: #3B82F6;
+}
+
+body[data-scene="cat"] .character-live-stage {
+  background: linear-gradient(180deg, #FBCFE8 0%, #FFF1F2 62%, #F9A8D4 100%);
+  border-color: #EC4899;
+}
+
+body[data-scene="astro"] .character-live-stage {
+  background: linear-gradient(180deg, #312E81 0%, #4C1D95 62%, #6D28D9 100%);
+  border-color: #8B5CF6;
+}
+
+.stage-sky-decor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+@keyframes driftCloud {
+  0%, 100% { transform: translateX(0) translateY(0); }
+  50% { transform: translateX(12px) translateY(-4px); }
+}
+
+.floating-cloud,
+.floating-star {
+  position: absolute;
+  font-size: 1.45rem;
+  opacity: 0.75;
+  animation: driftCloud 5s ease-in-out infinite;
+}
+
+.floating-cloud.c1 { top: 44px; left: 16px; }
+.floating-cloud.c2 { top: 56px; right: 18px; animation-delay: 1.5s; }
+.floating-star.s1 { top: 110px; left: 26px; font-size: 1.2rem; animation-delay: 0.8s; }
+.floating-star.s2 { top: 105px; right: 28px; font-size: 1.25rem; animation-delay: 2.1s; }
+
+.stage-top-hud {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.friendship-pill {
+  background: rgba(255, 255, 255, 0.92);
+  border: 2px solid #FDA4AF;
+  border-radius: 999px;
+  padding: 0.28rem 0.65rem;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.74rem;
+  font-weight: 900;
+  color: #BE123C;
+}
+
+.friendship-bar-track {
+  width: 58px;
+  height: 9px;
+  background: #FFE4E6;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.friendship-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #FB7185, #E11D48);
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+.mood-pill {
+  background: rgba(255, 255, 255, 0.92);
+  border: 2px solid #FCD34D;
+  border-radius: 999px;
+  padding: 0.28rem 0.65rem;
+  font-size: 0.74rem;
+  font-weight: 900;
+  color: #B45309;
+}
+
+/* Area Puppet Rig Karakter Interaktif */
+.mascot-puppet-stage {
+  position: relative;
+  z-index: 2;
+  margin: 0.55rem 0 0.3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.char-floating-emote {
+  background: #FFFFFF;
+  border: 2.5px solid #F59E0B;
+  border-bottom-width: 4px;
+  color: #0F172A;
+  font-size: 0.8rem;
+  font-weight: 900;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  margin-bottom: 0.35rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Animasi Rig SVG Karakter Hidup */
+@keyframes rigFloatBob {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-7px) scale(1.02); }
+}
+
+@keyframes rigBlinkEyes {
+  0%, 92%, 100% { transform: scaleY(1); }
+  96% { transform: scaleY(0.1); }
+}
+
+@keyframes rigWaveArm {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-14deg); }
+}
+
+@keyframes rigTalkMouth {
+  0%, 100% { transform: scaleY(0.45); }
+  50% { transform: scaleY(1.35); }
+}
+
+@keyframes rigJumpCelebrate {
+  0% { transform: translateY(0) scale(1); }
+  30% { transform: translateY(-22px) scale(1.08) rotate(-3deg); }
+  60% { transform: translateY(-10px) scale(1.04) rotate(3deg); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+.mascot-rig-svg-wrapper {
+  width: 162px;
+  height: 162px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: rigFloatBob 3.2s ease-in-out infinite;
+  filter: drop-shadow(0 12px 18px rgba(15, 23, 42, 0.18));
+}
+
+.mascot-rig-svg-wrapper svg {
+  width: 158px;
+  height: 158px;
+  overflow: visible;
+}
+
+.mascot-rig-svg-wrapper .rig-eyes {
+  transform-origin: center;
+  animation: rigBlinkEyes 3.8s infinite;
+}
+
+.mascot-rig-svg-wrapper .rig-arm {
+  transform-origin: center;
+  animation: rigWaveArm 2.4s ease-in-out infinite;
+}
+
+.mascot-rig-svg-wrapper .rig-mouth {
+  transform-origin: center;
+  transition: transform 0.1s ease;
+}
+
+/* Saat Kak Diko sedang berbicara (Lip-Sync Aktif) */
+.character-live-stage.is-speaking .mascot-rig-svg-wrapper .rig-mouth {
+  animation: rigTalkMouth 0.24s ease-in-out infinite;
+}
+
+/* Saat Kak Diko melompat gembira (Tos / Menjawab Benar) */
+.character-live-stage.is-celebrating .mascot-rig-svg-wrapper {
+  animation: rigJumpCelebrate 0.65s ease;
+}
+
+/* Equalizer Gelombang Suara 7-Bar */
+@keyframes eqBounce {
+  0%, 100% { height: 6px; }
+  50% { height: 22px; }
+}
+
+.voice-eq-bars {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  height: 24px;
+  margin-top: 0.2rem;
+}
+
+.voice-eq-bars span {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #10B981;
+  transition: height 0.15s ease;
+}
+
+.character-live-stage.is-speaking .voice-eq-bars span,
+.character-live-stage.is-listening .voice-eq-bars span {
+  animation: eqBounce 0.45s ease-in-out infinite;
+}
+
+.character-live-stage.is-speaking .voice-eq-bars span:nth-child(2),
+.character-live-stage.is-listening .voice-eq-bars span:nth-child(2) { animation-delay: 0.1s; }
+.character-live-stage.is-speaking .voice-eq-bars span:nth-child(3),
+.character-live-stage.is-listening .voice-eq-bars span:nth-child(3) { animation-delay: 0.2s; }
+.character-live-stage.is-speaking .voice-eq-bars span:nth-child(4),
+.character-live-stage.is-listening .voice-eq-bars span:nth-child(4) { animation-delay: 0.05s; }
+.character-live-stage.is-speaking .voice-eq-bars span:nth-child(5),
+.character-live-stage.is-listening .voice-eq-bars span:nth-child(5) { animation-delay: 0.18s; }
+
+.stage-char-nametag-wrap {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  margin-bottom: 0.55rem;
+}
+
+.stage-char-nametag-wrap .speaking-badge {
+  position: static;
+}
+
+/* Dock 3 Tombol Interaksi Karakter */
+.char-interaction-dock {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.45rem;
+  width: 100%;
+  margin-bottom: 0.6rem;
+}
+
+.char-action-btn {
+  padding: 0.5rem 0.4rem;
+  border-radius: 14px;
+  font-size: 0.74rem;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Panel Dialog Kanan */
+.game-dialog-panel {
+  border-width: 4px;
+  border-bottom-width: 8px;
+  border-radius: 32px;
+  justify-content: space-between;
+}
+
+.comic-speech-bubble {
+  border-width: 3px;
+  border-bottom-width: 6px;
+  border-radius: 26px;
+  background: linear-gradient(180deg, #FFFFFF 0%, #FFFBEB 100%);
+  text-align: left;
+  padding: 1.05rem 1.25rem;
+}
+
+.bubble-speaker-tag {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 900;
+  color: #D97706;
+}
+
+.mini-audio-replay-btn {
+  border: 1.5px solid #FCD34D;
+  background: #FEF3C7;
+  color: #B45309;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+}
+
+.arcade-mic-3d {
+  width: 124px;
+  height: 124px;
+  border: 6px solid #FFFFFF;
+  box-shadow: 0 8px 0 #B45309, 0 14px 28px rgba(245, 158, 11, 0.38);
+}
+
+.arcade-mic-3d:active {
+  transform: translateY(4px);
+  box-shadow: 0 4px 0 #B45309, 0 8px 16px rgba(245, 158, 11, 0.3);
+}
+
+.transcript-utility-strip {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.transcript-utility-strip .transcript-box {
+  flex: 1;
+  min-width: 220px;
+}
+
+/* Pulau Petualangan Level */
+.island-adventure-map {
+  background: linear-gradient(180deg, #ECFEFF 0%, #FEF9C3 100%);
+  border-color: #38BDF8;
+  border-bottom-width: 7px;
+}
+
+.island-nodes-track .level-node-card {
+  border-width: 3px;
+  border-bottom-width: 6px;
+  border-radius: 22px;
+}
+
+.quiz-arena-3d {
+  border-color: #10B981;
+  border-bottom-width: 7px;
+}
+
+.quiz-question-display {
+  font-size: 1.18rem;
+  font-weight: 900;
+  margin: 0.6rem 0 1.1rem;
+  text-align: center;
+  color: #0F172A;
+}
+
+.quiz-feedback-pill {
+  text-align: center;
+  font-size: 0.86rem;
+  font-weight: 800;
+  background: #FEF3C7;
+  color: #B45309;
+  padding: 0.7rem;
+  border-radius: 14px;
+}
+
+.quiz-feedback-pill.emerald {
+  background: #D1FAE5;
+  color: #047857;
+}
+
+/* Duolingo Character Stage Row */
+.duo-character-dialog-row {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.duo-companion-avatar-box {
+  width: 78px;
+  height: 78px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #D1FAE5, #A7F3D0);
+  border: 3px solid #10B981;
+  border-bottom-width: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.7rem;
+  flex-shrink: 0;
+  cursor: pointer;
+  animation: rigFloatBob 3s ease-in-out infinite;
+}
+
+.duo-speech-balloon {
+  flex: 1;
+  background: #FFFFFF;
+  border: 2.5px solid #CBD5E1;
+  border-bottom-width: 5px;
+  border-radius: 22px;
+  padding: 0.85rem 1rem;
+}
+
+/* Floating Interactive AI Assistant Co-Pilot Widget */
+.floating-copilot-widget {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 45;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.copilot-speech-pill {
+  background: #FFFFFF;
+  border: 2.5px solid #F59E0B;
+  border-bottom-width: 5px;
+  border-radius: 18px;
+  padding: 0.5rem 0.85rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #0F172A;
+  max-width: 240px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.14);
+}
+
+.copilot-avatar-btn {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 3px solid #FFFFFF;
+  background: linear-gradient(135deg, #10B981, #059669);
+  box-shadow: 0 6px 0 #047857, 0 10px 24px rgba(16, 185, 129, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+.copilot-avatar-btn:active {
+  transform: translateY(3px);
+  box-shadow: 0 3px 0 #047857;
+}
+
+.copilot-ai-tag {
+  position: absolute;
+  bottom: -6px;
+  background: #F59E0B;
+  color: #0F172A;
+  font-size: 0.62rem;
+  font-weight: 900;
+  padding: 0.1rem 0.4rem;
+  border-radius: 999px;
+  border: 1.5px solid #FFFFFF;
+}
+
+/* Lapisan Partikel Perayaan Bintang / Confetti */
+.celebration-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 80;
+  overflow: hidden;
+}
+
+@keyframes particleBurst {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(0.6) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--tx), var(--ty)) scale(1.25) rotate(260deg);
+  }
+}
+
+.burst-particle {
+  position: absolute;
+  font-size: 1.6rem;
+  animation: particleBurst 0.95s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
